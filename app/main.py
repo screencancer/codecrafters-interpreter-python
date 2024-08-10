@@ -103,7 +103,7 @@ def main():
             if result == "EOF  null":
                 break
             print(result)
-        elif c == " " or c == "\t":
+        elif c == " " or c == "\t" or c == "\r":
             pass
         else:
             err = True
