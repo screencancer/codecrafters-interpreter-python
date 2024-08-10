@@ -80,10 +80,6 @@ def main():
             print("MINUS - null")
         elif c == ";":
             print("SEMICOLON ; null")
-        elif c == "/":
-            print("SLASH / null")
-        elif c == "/":
-            print("SLASH / null")
         elif c == "=":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EQUAL_EQUAL == null":
