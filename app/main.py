@@ -31,7 +31,7 @@ def main():
     for c in file_contents:
         pointer += 1
         while pointer < length:
-            print(file_contents[pointer-1])
+            print(file_contents[pointer])
         if c == "(":
             print("LEFT_PAREN ( null")
         elif c == ")":
