@@ -7,6 +7,15 @@ def findlinenum(file, char):
     return line_num
 
 
+def checkNeighbor(file_contents, pointer):
+    if pointer + 1 < len(file_contents):
+        if file_contents[pointer + 1] == "=":
+            pointer += 1
+            return "EQUAL_EQUAL == null"
+
+        else:
+            return "EQUAL = null"
+
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
     print("Logs from your program will appear here!", file=sys.stderr)
@@ -55,14 +64,9 @@ def main():
         elif c == "/":
             print("SLASH / null")
         elif c == "=":
-            if pointer + 1 < len(file_contents):
-                if file_contents[pointer + 1] == "=":
-                    print("EQUAL_EQUAL == null")
-                    pointer += 1
-                else:
-                    print("EQUAL = null")
-            else:
-                print("EQUAL = null")
+                result = checkNeighbor(file_contents, pointer)
+                print(result)
+
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
