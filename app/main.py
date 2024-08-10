@@ -8,6 +8,12 @@ def findlinenum(file, char):
 
 
 def checkNeighbor(file_contents, pointer, c):
+    if c == "/":
+        if (pointer + 1 < len(file_contents)) and file_contents[pointer + 1] == "/":
+            return "EOF  null"
+        else:
+            return "SLASH / null"
+
     if (pointer + 1 < len(file_contents)) and file_contents[pointer + 1] == "=":
         pointer += 1
         if c == "=":
@@ -94,6 +100,11 @@ def main():
         elif c == ">":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "GREATER_EQUAL >= null":
+                pointer += 1
+            print(result)
+        elif c == "/":
+            result = checkNeighbor(file_contents, pointer - 1, c)
+            if result == "EOF  null":
                 pointer += 1
             print(result)
         else:
