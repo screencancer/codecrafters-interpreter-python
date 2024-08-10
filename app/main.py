@@ -1,9 +1,9 @@
 import sys
 
 
-def findlinenum(file, char):
+def findlinenum(file, char, pointer):
     #Find line of err
-    line_num = file.count("\n", 0, file.find(char)) + 1
+    line_num = file.count("\n", 0, file.find(char, pointer)) + 1
     return line_num
 
 
@@ -108,7 +108,7 @@ def main():
             pass
         else:
             err = True
-            error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
+            error_message = f"[line {findlinenum(file_contents, c, pointer)}] " + f"Error: Unexpected character: {c}"
             print(error_message, file=sys.stderr)
     print("EOF  null")
     if err:
