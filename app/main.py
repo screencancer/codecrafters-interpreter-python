@@ -101,7 +101,7 @@ def main():
         elif c == "/":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EOF  null":
-                break
+                continue
             print(result)
         elif c == " " or c == "\t" or c == "\n":
             pass
