@@ -63,8 +63,6 @@ def main():
             print("LEFT_PAREN ( null")
         elif c == ")":
             print("RIGHT_PAREN ) null")
-        elif c == " " or "\t":
-            pass
         elif c == "{":
             print("LEFT_BRACE { null")
         elif c == "}":
@@ -106,6 +104,8 @@ def main():
             if result == "EOF  null":
                 break
             print(result)
+        elif c == " " or "\t":
+            pass
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
