@@ -101,7 +101,7 @@ def main():
         elif c == "/":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EOF  null":
-                while file_contents[pointer] not in ["\n", "", " ", "\r"]:
+                while file_contents[pointer-1] not in ["\n", ""]:
                     pointer += 1
             #print(result)
         elif c == " " or c == "\t" or c == "\n":
