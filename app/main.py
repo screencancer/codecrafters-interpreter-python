@@ -6,7 +6,6 @@ def findlinenum(file, char):
     for line in file:
         line_num += 1;
         if char in line:
-            print(line)
             return line_num
 
 
