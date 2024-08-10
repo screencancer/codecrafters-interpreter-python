@@ -51,7 +51,9 @@ def main():
             print("SEMICOLON ; null")
         elif c == "/":
             print("SLASH / null")
-        elif c != "" or c != "":
+        else:
+            if c == "" or c == " ":
+                break
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
             sys.stderr.write(error_message)
             sys.exit(65)
