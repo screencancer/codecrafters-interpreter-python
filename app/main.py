@@ -88,8 +88,6 @@ def main():
             if result == "BANG_EQUAL != null":
                 pointer += 1
             print(result)
-        elif c == "\t" or c == " ":
-            pass
         elif c == "<":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "LESS_EQUAL <= null":
@@ -105,6 +103,8 @@ def main():
             if result == "EOF  null":
                 break
             print(result)
+        elif c == " " or c == "\r" or c == "\t":
+            pass
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
