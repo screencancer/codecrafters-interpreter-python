@@ -8,18 +8,17 @@ def findlinenum(file, char):
 
 
 def checkNeighbor(file_contents, pointer, c):
-    if pointer + 1 < len(file_contents):
-        if file_contents[pointer + 1] == "=":
-            pointer += 1
-            if c == "=":
-                return "EQUAL_EQUAL == null"
-            if c == "!":
-                return "BANG_EQUAL != null"
-        else:
-            if c == "=":
-                return "EQUAL = null"
-            if c == "!":
-                return "BANG ! null"
+    if (pointer + 1 < len(file_contents)) and file_contents[pointer + 1] == "=":
+        pointer += 1
+        if c == "=":
+            return "EQUAL_EQUAL == null"
+        if c == "!":
+            return "BANG_EQUAL != null"
+    else:
+        if c == "=":
+            return "EQUAL = null"
+        if c == "!":
+            return "BANG ! null"
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
