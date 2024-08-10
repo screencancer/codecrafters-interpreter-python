@@ -1,5 +1,13 @@
 import sys
 
+def findlinenum(file, char):
+    #Find line of err
+    line_num = 0
+    for line in file:
+        line_num += 1;
+        if char in line:
+            return line_num
+
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -43,6 +51,9 @@ def main():
             print("SEMICOLON ; null")
         elif c == "/":
             print("SLASH / null")
+        else:
+            sys.stderr.write(f"line {findlinenum(file_contents, c)}" ,f"Error: Unexpected character: {c}")
+
 
 
     print("EOF  null")
