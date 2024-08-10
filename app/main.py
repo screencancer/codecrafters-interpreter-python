@@ -106,7 +106,7 @@ def main():
         elif c == " " or c == "\t":
             pass
         else:
-            print(c == "\t" or c == "")
+            print(ord(c))
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
             print(error_message, file=sys.stderr)
