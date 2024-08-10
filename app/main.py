@@ -3,11 +3,10 @@ import sys
 def findlinenum(file, char):
     #Find line of err
     line_num = 0
-    with open(file, 'r') as file:
-        for line in file:
-            line_num += 1;
-            if char in line:
-                return line_num
+    for line in file:
+        line_num += 1;
+        if char in line:
+            return line_num
 
 
 def main():
@@ -55,7 +54,7 @@ def main():
             print("SLASH / null")
         else:
             err = True
-            error_message = f"[line {findlinenum(file, c)}] " + f"Error: Unexpected character: {c}"
+            error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
             sys.stderr.write(error_message)
 
 
