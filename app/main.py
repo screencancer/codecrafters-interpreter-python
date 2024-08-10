@@ -54,8 +54,9 @@ def main():
         elif c == "/":
             print("SLASH / null")
         elif c == "=":
-            if (file_contents[pointer + 1] == "="):
-                print("EQUAL_EQUAL == null")
+            if pointer + 1 < len(file_contents):
+                if file_contents[pointer + 1] == "=":
+                    print("EQUAL_EQUAL == null")
             print("EQUAL = null")
 
 
