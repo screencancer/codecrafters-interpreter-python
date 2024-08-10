@@ -105,8 +105,9 @@ def main():
         elif c == "/":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EOF  null":
-                pointer += 1
-            print(result)
+                sys.exit(0)
+            else:
+                print(result)
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
