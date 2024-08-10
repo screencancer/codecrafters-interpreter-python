@@ -50,10 +50,16 @@ def main():
             print("SEMICOLON ; null")
         elif c == "/":
             print("SLASH / null")
+        elif c == "/":
+            print("SLASH / null")
+        elif c == "=":
+            print("EQUAL = null")
+        elif c == "==":
+            print("EQUAL_EQUAL == null")
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
-            print(error_message, file = sys.stderr)
+            print(error_message, file=sys.stderr)
     print("EOF  null")
     if err:
         sys.exit(65)
