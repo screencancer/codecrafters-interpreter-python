@@ -103,7 +103,7 @@ def main():
         elif c == "/":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EOF  null":
-                pointer += 1
+                sys.exit(0)
             print(result)
         else:
             err = True
