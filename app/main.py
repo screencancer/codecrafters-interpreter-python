@@ -2,11 +2,8 @@ import sys
 
 def findlinenum(file, char):
     #Find line of err
-    line_num = 0
-    for line in file:
-        line_num += 1;
-        if char in line:
-            return line_num
+    line_num = file.count("\n", 0, file.find(char)) + 1
+    return line_num
 
 
 def main():
