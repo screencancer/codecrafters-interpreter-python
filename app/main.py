@@ -27,8 +27,9 @@ def main():
     with open(filename) as file:
         file_contents = file.read()
 
-
+    err = False
     for c in file_contents:
+
         if c == "(":
             print("LEFT_PAREN ( null")
         elif c == ")":
@@ -52,17 +53,16 @@ def main():
         elif c == "/":
             print("SLASH / null")
         else:
-            print(c)
-            if c:
-                error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
-                sys.stderr.write(error_message)
-                sys.exit(65)
-            else:
-                print("entered break")
-                break
+            err = True
+            error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
+            sys.stderr.write(error_message)
+
 
     print("EOF  null")
-
+    if err:
+        sys.exit(65)
+    else:
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
