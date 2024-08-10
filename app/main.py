@@ -59,6 +59,7 @@ def main():
                 if file_contents[pointer + 1] == "=":
                     print("EQUAL_EQUAL == null")
                     pointer += 1
+                else: print("EQUAL = null")
             else:
                 print("EQUAL = null")
         else:
