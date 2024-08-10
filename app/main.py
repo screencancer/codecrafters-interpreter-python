@@ -29,6 +29,7 @@ def main():
     pointer = 0
     while pointer < len(file_contents):
         c = file_contents[pointer]
+        print(c)
         pointer += 1
         if c == "(":
             print("LEFT_PAREN ( null")
@@ -59,7 +60,8 @@ def main():
                 if file_contents[pointer + 1] == "=":
                     print("EQUAL_EQUAL == null")
                     pointer += 1
-                else: print("EQUAL = null")
+                else:
+                    print("EQUAL = null")
             else:
                 print("EQUAL = null")
         else:
