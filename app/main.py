@@ -39,6 +39,10 @@ def main():
             print("PLUS + null")
         elif c == "-":
             print("MINUS - null")
+        elif c == ";":
+            print("SEMICOLON ; null")
+        elif c == "/":
+            print("SLASH / null")
 
 
     print("EOF  null")
