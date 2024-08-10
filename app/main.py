@@ -37,6 +37,8 @@ def main():
             print("COMMA , null")
         elif c == "+":
             print("PLUS + null")
+        elif c == "-":
+            print("MINUS - null")
 
 
     print("EOF  null")
