@@ -12,14 +12,14 @@ def checkNeighbor(file_contents, pointer, c):
         if file_contents[pointer + 1] == "=":
             pointer += 1
             if c == "=":
-                return "EQUAL_EQUAL == null"
+                return "EQUAL_EQUAL == null", pointer
             if c == "!":
-                return "BANG_EQUAL != null"
+                return "BANG_EQUAL != null", pointer
         else:
             if c == "=":
-                return "EQUAL = null"
+                return "EQUAL = null", pointer
             if c == "!":
-                return "BANG ! null"
+                return "BANG ! null", pointer
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -69,10 +69,11 @@ def main():
         elif c == "/":
             print("SLASH / null")
         elif c == "=":
-            result = checkNeighbor(file_contents, pointer - 1, c)
+            result, pointer = checkNeighbor(file_contents, pointer - 1, c)
             print(result)
         elif c == "!":
-            result = checkNeighbor(file_contents, pointer -1, c)
+            result, pointer = checkNeighbor(file_contents, pointer - 1, c)
+
             print(result)
         else:
             err = True
