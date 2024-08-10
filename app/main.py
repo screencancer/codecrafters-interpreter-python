@@ -57,6 +57,8 @@ def main():
     pointer = 0
     while pointer < len(file_contents):
         c = file_contents[pointer]
+        if c == " " or "\t":
+            pass
         pointer += 1
         if c == "(":
             print("LEFT_PAREN ( null")
