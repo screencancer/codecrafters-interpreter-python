@@ -102,6 +102,7 @@ def main():
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EOF  null":
                 print(result)
+                break
             print(result)
         else:
             err = True
