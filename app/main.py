@@ -27,7 +27,8 @@ def main():
 
     err = False
     pointer = 0
-    for c in file_contents:
+    while pointer < len(file_contents):
+        c = file_contents[pointer]
         pointer += 1
         if c == "(":
             print("LEFT_PAREN ( null")
@@ -57,10 +58,9 @@ def main():
             if pointer + 1 < len(file_contents):
                 if file_contents[pointer + 1] == "=":
                     print("EQUAL_EQUAL == null")
+                    pointer += 1
             else:
                 print("EQUAL = null")
-
-
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
