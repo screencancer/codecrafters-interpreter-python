@@ -103,9 +103,10 @@ def main():
             if result == "EOF  null":
                 break
             print(result)
-        elif c == " " or c == "\r" or c == "\t":
+        elif c == " " or c == "\t":
             pass
         else:
+            print(c == "\t")
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
             print(error_message, file=sys.stderr)
