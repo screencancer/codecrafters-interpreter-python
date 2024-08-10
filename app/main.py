@@ -8,7 +8,9 @@ def findlinenum(file, char):
 
 
 def checkNeighbor(file_contents, pointer, c):
-    if pointer < len(file_contents):
+    print(pointer)
+    print(len(file_contents))
+    if pointer + 1 < len(file_contents):
         if file_contents[pointer + 1] == "=":
             pointer += 1
             if c == "=":
