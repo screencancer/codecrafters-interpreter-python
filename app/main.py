@@ -53,8 +53,7 @@ def main():
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
-            sys.stderr.write(error_message)
-            continue
+            print(error_message, file = sys.stderr)
     print("EOF  null")
     if err:
         sys.exit(65)
