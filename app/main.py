@@ -29,8 +29,7 @@ def main():
     pointer = 0
     for c in file_contents:
         pointer += 1
-        print(len(file_contents))
-        print(file_contents[pointer]-1)
+        print(file_contents[pointer-1])
         if c == "(":
             print("LEFT_PAREN ( null")
         elif c == ")":
