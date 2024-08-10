@@ -52,7 +52,7 @@ def main():
         elif c == "/":
             print("SLASH / null")
         else:
-            if not c == '\0':
+            if c == '\0':
                 error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
                 sys.stderr.write(error_message)
                 sys.exit(65)
