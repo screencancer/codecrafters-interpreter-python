@@ -7,14 +7,19 @@ def findlinenum(file, char):
     return line_num
 
 
-def checkNeighbor(file_contents, pointer):
+def checkNeighbor(file_contents, pointer, c):
     if pointer + 1 < len(file_contents):
         if file_contents[pointer + 1] == "=":
             pointer += 1
-            return "EQUAL_EQUAL == null"
-
+            if c == "=":
+                return "EQUAL_EQUAL == null"
+            if c == "!":
+                return "BANG_EQUAL != null"
         else:
-            return "EQUAL = null"
+            if c == "=":
+                return "EQUAL = null"
+            if c == "!":
+                return "BANG ! null"
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -64,8 +69,11 @@ def main():
         elif c == "/":
             print("SLASH / null")
         elif c == "=":
-                result = checkNeighbor(file_contents, pointer)
+                result = checkNeighbor(file_contents, pointer, c)
                 print(result)
+        elif c == "!":
+            result = checkNeighbor(file_contents, pointer, c)
+            print(result)
 
         else:
             err = True
