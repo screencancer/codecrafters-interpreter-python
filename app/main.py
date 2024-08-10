@@ -8,7 +8,7 @@ def findlinenum(file, char):
 
 
 def checkNeighbor(file_contents, pointer, c):
-    if pointer + 1 < len(file_contents):
+    if pointer -1 < len(file_contents):
         if file_contents[pointer + 1] == "=":
             pointer += 1
             if c == "=":
@@ -69,12 +69,11 @@ def main():
         elif c == "/":
             print("SLASH / null")
         elif c == "=":
-                result = checkNeighbor(file_contents, pointer, c)
-                print(result)
+            result = checkNeighbor(file_contents, pointer, c)
+            print(result)
         elif c == "!":
             result = checkNeighbor(file_contents, pointer, c)
             print(result)
-
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
