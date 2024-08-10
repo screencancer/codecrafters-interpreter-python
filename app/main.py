@@ -14,11 +14,20 @@ def checkNeighbor(file_contents, pointer, c):
             return "EQUAL_EQUAL == null"
         if c == "!":
             return "BANG_EQUAL != null"
+        if c == "<":
+            return "LESS_EQUAL <= null"
+        if c == ">":
+            return "GREATER_EQUAL >= null"
     else:
         if c == "=":
             return "EQUAL = null"
         if c == "!":
             return "BANG ! null"
+        if c == "<":
+            return "LESS < null"
+        if c == ">":
+            return "GREATER > null"
+
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -75,6 +84,16 @@ def main():
         elif c == "!":
             result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "BANG_EQUAL != null":
+                pointer += 1
+            print(result)
+        elif c == "<":
+            result = checkNeighbor(file_contents, pointer - 1, c)
+            if result == "LESS_EQUAL <= null":
+                pointer += 1
+            print(result)
+        elif c == ">":
+            result = checkNeighbor(file_contents, pointer - 1, c)
+            if result == "GREATER_EQUAL >= null":
                 pointer += 1
             print(result)
         else:
