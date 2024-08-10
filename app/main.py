@@ -51,13 +51,12 @@ def main():
             print("SEMICOLON ; null")
         elif c == "/":
             print("SLASH / null")
-        elif c == "":
-            print("EOF  null")
         else:
+            print("Entering error handling")
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
             sys.stderr.write(error_message)
             sys.exit(65)
-    #print("EOF  null")
+    print("EOF  null")
 
 
 if __name__ == "__main__":
