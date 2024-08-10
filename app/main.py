@@ -3,7 +3,7 @@ import sys
 
 def findlinenum(file, char, pointer):
     #Find line of err
-    line_num = file.count("\n", 0, file.find(char, pointer)) + 1
+    line_num = file.count("\n", 0, file.find(char, pointer - 1)) + 1
     return line_num
 
 
