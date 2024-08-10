@@ -27,10 +27,9 @@ def main():
 
     err = False
     pointer = 0
-    length = len(file_contents)
     for c in file_contents:
         pointer += 1
-        while pointer < length:
+        while pointer < len(file_contents):
             print(file_contents[pointer])
         if c == "(":
             print("LEFT_PAREN ( null")
