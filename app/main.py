@@ -1,5 +1,6 @@
 import sys
 
+
 def findlinenum(file, char):
     #Find line of err
     line_num = file.count("\n", 0, file.find(char)) + 1
@@ -53,13 +54,13 @@ def main():
             err = True
             error_message = f"[line {findlinenum(file_contents, c)}] " + f"Error: Unexpected character: {c}"
             sys.stderr.write(error_message)
-
-
+            continue
     print("EOF  null")
     if err:
         sys.exit(65)
     else:
         sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
