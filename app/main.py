@@ -103,6 +103,8 @@ def main():
             if result == "EOF  null":
                 while file_contents[pointer-1] not in ["\n", ""]:
                     pointer += 1
+                    if pointer == len(file_contents):
+                        break
             #print(result)
         elif c == " " or c == "\t" or c == "\n":
             pass
