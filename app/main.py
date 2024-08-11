@@ -105,7 +105,8 @@ def main():
                     pointer += 1
                     if pointer == len(file_contents):
                         break
-            #print(result)
+            else:
+                print(result)
         elif c == " " or c == "\t" or c == "\n":
             pass
         else:
