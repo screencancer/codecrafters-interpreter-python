@@ -1,3 +1,4 @@
+from ctypes import pointer
 import sys
 
 
@@ -6,6 +7,15 @@ def findlinenum(file, char, pointer):
     line_num = file.count("\n", 0, file.find(char, pointer - 1)) + 1
     return line_num
 
+def checkString(startIdx, file_contents, pointer):
+    pointer = 0
+    str = []
+    while c != '"':
+        pointer += 1
+        c = file_contents[pointer]
+        str.append(c)
+
+    return 0
 
 def checkNeighbor(file_contents, pointer, c):
     if c == "/":
@@ -109,6 +119,9 @@ def main():
                 print(result)
         elif c == " " or c == "\t" or c == "\n":
             pass
+        elif c == '"':
+            #check if string
+            checkString(pointer, file_contents, pointer)
         else:
             err = True
             error_message = f"[line {findlinenum(file_contents, c, pointer)}] " + f"Error: Unexpected character: {c}"
