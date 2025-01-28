@@ -1,6 +1,20 @@
-from ctypes import pointer
 import sys
 
+valid_operators = {
+    "=": "EQUAL",
+    "!": "BANG",
+    "<": "LESS",
+    ">": "GREATER",
+    "(": "LEFT_PAREN",
+    ")": "RIGHT_PAREN",
+    "{": "LEFT_BRACE",
+    "}": "RIGHT_BRACE",
+    "*": "STAR",
+    ".": "DOT",
+    ",": "COMMA",
+    "+": "PLUS",
+    "-": "MINUS"
+}
 
 def findlinenum(file, char, pointer):
     #Find line of err
@@ -17,50 +31,32 @@ def checkString(startIdx, file_contents, pointer):
 
     return 0
 
-def checkNeighbor(file_contents, pointer, c):
-    if c == "/":
-        if (pointer + 1 < len(file_contents)) and file_contents[pointer + 1] == "/":
-            return "EOF  null"
-        else:
-            return "SLASH / null"
+def checkNeighbor(file_contents, pointer, c, expression):
+        expression += "_"
+        print(expression)
 
-    if (pointer + 1 < len(file_contents)) and file_contents[pointer + 1] == "=":
-        pointer += 1
-        if c == "=":
-            return "EQUAL_EQUAL == null"
-        if c == "!":
-            return "BANG_EQUAL != null"
-        if c == "<":
-            return "LESS_EQUAL <= null"
-        if c == ">":
-            return "GREATER_EQUAL >= null"
-    else:
-        if c == "=":
-            return "EQUAL = null"
-        if c == "!":
-            return "BANG ! null"
-        if c == "<":
-            return "LESS < null"
-        if c == ">":
-            return "GREATER > null"
-
+        if (pointer + 1 < len(file_contents)):
+            nextOp = valid_operators.get(file_contents[pointer + 1])
+            expression += nextOp
+            print(expression)
+            if (expression in valid_operators):
+                print(expression)
+                return expression
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
-    print("Logs from your program will appear here!", file=sys.stderr)
+    #print("Logs from your program will appear here!", file=testfile)
 
-    if len(sys.argv) < 3:
-        print("Usage: ./your_program.sh tokenize <filename>", file=sys.stderr)
-        exit(1)
+    #if len(sys.argv) < 3:
+        #print("Usage: ./your_program.sh tokenize <filename>", file=testfile)
+        #exit(1)
 
-    command = sys.argv[1]
-    filename = sys.argv[2]
+    #command = sys.argv[1]
+    #if command != "tokenize":
+        #print(f"Unknown command: {command}", file=testfile)
+        #exit(1)
 
-    if command != "tokenize":
-        print(f"Unknown command: {command}", file=sys.stderr)
-        exit(1)
-
-    with open(filename) as file:
+    with open("app/testfile.txt") as file:
         file_contents = file.read()
 
     err = False
@@ -68,6 +64,7 @@ def main():
     while pointer < len(file_contents):
         c = file_contents[pointer]
         pointer += 1
+        build_exp(file_contents, pointer, c)
         if c == "(":
             print("LEFT_PAREN ( null")
         elif c == ")":
@@ -89,27 +86,22 @@ def main():
         elif c == ";":
             print("SEMICOLON ; null")
         elif c == "=":
-            result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EQUAL_EQUAL == null":
                 pointer += 1
             print(result)
         elif c == "!":
-            result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "BANG_EQUAL != null":
                 pointer += 1
             print(result)
         elif c == "<":
-            result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "LESS_EQUAL <= null":
                 pointer += 1
             print(result)
         elif c == ">":
-            result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "GREATER_EQUAL >= null":
                 pointer += 1
             print(result)
         elif c == "/":
-            result = checkNeighbor(file_contents, pointer - 1, c)
             if result == "EOF  null":
                 while file_contents[pointer-1] not in ["\n", ""]:
                     pointer += 1
@@ -132,6 +124,12 @@ def main():
     else:
         sys.exit(0)
 
+
+def build_exp(file_contents, pointer, c):
+    
+    expression = valid_operators.get(c)
+
+    checkNeighbor(file_contents, pointer, c, expression)
 
 if __name__ == "__main__":
     main()
