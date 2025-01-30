@@ -16,6 +16,11 @@ valid_operators = {
     "-": "MINUS"
 }
 
+valid_double_operators = {
+    "==": "EQUAL_EQUAL",
+    ">=": "GREATER_EQUAL"
+}
+
 def findlinenum(file, char, pointer):
     #Find line of err
     line_num = file.count("\n", 0, file.find(char, pointer - 1)) + 1
@@ -35,13 +40,14 @@ def checkNeighbor(file_contents, pointer, c, expression):
         expression += "_"
         print(expression)
 
-        if (pointer + 1 < len(file_contents)):
-            nextOp = valid_operators.get(file_contents[pointer + 1])
+        if (pointer < len(file_contents)):
+            nextOp = valid_operators.get(file_contents[pointer])
             expression += nextOp
-            print(expression)
-            if (expression in valid_operators):
-                print(expression)
-                return expression
+            c = list(valid_double_operators.keys());
+            for values in c:
+                print(valid_double_operators.get(values) + " test " + expression)
+                if(expression == valid_double_operators.get(values)):
+                    print(expression + " Is Valid double operator")
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -65,59 +71,6 @@ def main():
         c = file_contents[pointer]
         pointer += 1
         build_exp(file_contents, pointer, c)
-        if c == "(":
-            print("LEFT_PAREN ( null")
-        elif c == ")":
-            print("RIGHT_PAREN ) null")
-        elif c == "{":
-            print("LEFT_BRACE { null")
-        elif c == "}":
-            print("RIGHT_BRACE } null")
-        elif c == "*":
-            print("STAR * null")
-        elif c == ".":
-            print("DOT . null")
-        elif c == ",":
-            print("COMMA , null")
-        elif c == "+":
-            print("PLUS + null")
-        elif c == "-":
-            print("MINUS - null")
-        elif c == ";":
-            print("SEMICOLON ; null")
-        elif c == "=":
-            if result == "EQUAL_EQUAL == null":
-                pointer += 1
-            print(result)
-        elif c == "!":
-            if result == "BANG_EQUAL != null":
-                pointer += 1
-            print(result)
-        elif c == "<":
-            if result == "LESS_EQUAL <= null":
-                pointer += 1
-            print(result)
-        elif c == ">":
-            if result == "GREATER_EQUAL >= null":
-                pointer += 1
-            print(result)
-        elif c == "/":
-            if result == "EOF  null":
-                while file_contents[pointer-1] not in ["\n", ""]:
-                    pointer += 1
-                    if pointer == len(file_contents):
-                        break
-            else:
-                print(result)
-        elif c == " " or c == "\t" or c == "\n":
-            pass
-        elif c == '"':
-            #check if string
-            checkString(pointer, file_contents, pointer)
-        else:
-            err = True
-            error_message = f"[line {findlinenum(file_contents, c, pointer)}] " + f"Error: Unexpected character: {c}"
-            print(error_message, file=sys.stderr)
     print("EOF  null")
     if err:
         sys.exit(65)
