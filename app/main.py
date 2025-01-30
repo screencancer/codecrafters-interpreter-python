@@ -1,24 +1,26 @@
 import sys
 
 valid_operators = {
-    "=": "EQUAL",
-    "!": "BANG",
-    "<": "LESS",
-    ">": "GREATER",
-    "(": "LEFT_PAREN",
-    ")": "RIGHT_PAREN",
-    "{": "LEFT_BRACE",
-    "}": "RIGHT_BRACE",
-    "*": "STAR",
-    ".": "DOT",
-    ",": "COMMA",
-    "+": "PLUS",
-    "-": "MINUS"
+    "=": "EQUAL = null",
+    "!": "BANG ! null",
+    "<": "LESS < null",
+    ">": "GREATER > null ",
+    "(": "LEFT_PAREN ( null",
+    ")": "RIGHT_PAREN ) null",
+    "{": "LEFT_BRACE { null",
+    "}": "RIGHT_BRACE } null",
+    "*": "STAR * null",
+    ".": "DOT . null",
+    ",": "COMMA , null",
+    "+": "PLUS + null",
+    "-": "MINUS - null"
 }
 
 valid_double_operators = {
-    "==": "EQUAL_EQUAL",
-    ">=": "GREATER_EQUAL"
+    "==": "EQUAL_EQUAL == null",
+    ">=": "GREATER_EQUAL >= null",
+    "!=": "BANG_EQUAL != null",
+    "<=": "LESS_EQUAL <= null"
 }
 
 def findlinenum(file, char, pointer):
@@ -39,26 +41,28 @@ def checkString(startIdx, file_contents, pointer):
 def checkNeighbor(file_contents, pointer, c, expression):
         valid = False
 
-        expression += "_"
-        print(expression)
+        tempexp = expression + "_"
+        #print(tempexp)
 
         if (pointer < len(file_contents)):
             nextOp = valid_operators.get(file_contents[pointer])
-            expression += nextOp
+            tempexp += nextOp
             c = list(valid_double_operators.keys());
+
+            iteration = 0;
+
             for values in c:
-                print(valid_double_operators.get(values) + " test " + expression)
-                if(expression == valid_double_operators.get(values)):
-                    print(expression + " Is Valid double operator")
+                #print(iteration)
+                if(tempexp == valid_double_operators.get(values)):
+                    #print(tempexp + " Is Valid double operator")
                     valid = True
+                    return tempexp
+                elif(iteration == len(valid_double_operators)-1):
+                    #print(expression)
+                    #print("final")
                     return expression
-                else:
-                    index = expression.find("_")
-                    l = list(expression)
-                    l[index] = ""
-                    print(l)
-                    expression = "".join(l)
-                    print(expression)
+
+                iteration+=1
 
 
 def main():
@@ -83,6 +87,7 @@ def main():
         c = file_contents[pointer]
         pointer += 1
         expression = build_exp(file_contents, pointer, c)
+        print(expression)
     print("EOF  null")
     if err:
         sys.exit(65)
@@ -94,7 +99,8 @@ def build_exp(file_contents, pointer, c):
     
     expression = valid_operators.get(c)
 
-    checkNeighbor(file_contents, pointer, c, expression)
+    expression = checkNeighbor(file_contents, pointer, c, expression)
+    return expression
 
 if __name__ == "__main__":
     main()
