@@ -37,6 +37,8 @@ def checkString(startIdx, file_contents, pointer):
     return 0
 
 def checkNeighbor(file_contents, pointer, c, expression):
+        valid = False
+
         expression += "_"
         print(expression)
 
@@ -48,6 +50,16 @@ def checkNeighbor(file_contents, pointer, c, expression):
                 print(valid_double_operators.get(values) + " test " + expression)
                 if(expression == valid_double_operators.get(values)):
                     print(expression + " Is Valid double operator")
+                    valid = True
+                    return expression
+                else:
+                    index = expression.find("_")
+                    l = list(expression)
+                    l[index] = ""
+                    print(l)
+                    expression = "".join(l)
+                    print(expression)
+
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -70,7 +82,7 @@ def main():
     while pointer < len(file_contents):
         c = file_contents[pointer]
         pointer += 1
-        build_exp(file_contents, pointer, c)
+        expression = build_exp(file_contents, pointer, c)
     print("EOF  null")
     if err:
         sys.exit(65)
