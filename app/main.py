@@ -45,7 +45,13 @@ def checkNeighbor(file_contents, pointer, c, expression):
         #print(tempexp)
 
         if (pointer < len(file_contents)):
-            nextOp = valid_operators.get(file_contents[pointer+1])
+            #If nextop is out of bounds return last char alone without checking
+            try:
+                nextOp = valid_operators.get(file_contents[pointer+1])
+            except:
+                print(f"List out of bounds at {pointer} in {c}")
+                return c, pointer
+
             tempexp += nextOp
             cList = list(valid_double_operators.keys());
 
