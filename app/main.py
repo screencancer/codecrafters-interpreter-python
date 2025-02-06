@@ -85,9 +85,14 @@ def main():
     pointer = 0
     while pointer < len(file_contents):
         c = file_contents[pointer]
-        expression, pointer = build_exp(file_contents, pointer, c)
-        pointer += 1
-        print(expression)
+        if(valid_operators.get(c) == None):
+            print(f"Invalid at line number: {findlinenum(file_contents, c, pointer)}")
+            err = True
+            break
+        else:
+            expression, pointer = build_exp(file_contents, pointer, c)
+            pointer += 1
+            print(expression)
     print("EOF  null")
     if err:
         sys.exit(65)
