@@ -1,26 +1,26 @@
 import sys
 
 valid_operators = {
-    "=": "EQUAL = null",
-    "!": "BANG ! null",
-    "<": "LESS < null",
-    ">": "GREATER > null ",
-    "(": "LEFT_PAREN ( null",
-    ")": "RIGHT_PAREN ) null",
-    "{": "LEFT_BRACE { null",
-    "}": "RIGHT_BRACE } null",
-    "*": "STAR * null",
-    ".": "DOT . null",
-    ",": "COMMA , null",
-    "+": "PLUS + null",
-    "-": "MINUS - null"
+    "=": "EQUAL",
+    "!": "BANG",
+    "<": "LESS",
+    ">": "GREATER",
+    "(": "LEFT_PAREN",
+    ")": "RIGHT_PAREN",
+    "{": "LEFT_BRACE",
+    "}": "RIGHT_BRACE",
+    "*": "STAR",
+    ".": "DOT",
+    ",": "COMMA",
+    "+": "PLUS",
+    "-": "MINUS"
 }
 
 valid_double_operators = {
-    "==": "EQUAL_EQUAL == null",
-    ">=": "GREATER_EQUAL >= null",
-    "!=": "BANG_EQUAL != null",
-    "<=": "LESS_EQUAL <= null"
+    "==": "EQUAL_EQUAL",
+    ">=": "GREATER_EQUAL",
+    "!=": "BANG_EQUAL",
+    "<=": "LESS_EQUAL"
 }
 
 def findlinenum(file, char, pointer):
@@ -45,39 +45,30 @@ def checkNeighbor(file_contents, pointer, c, expression):
         #print(tempexp)
 
         if (pointer < len(file_contents)):
-            nextOp = valid_operators.get(file_contents[pointer])
+            nextOp = valid_operators.get(file_contents[pointer+1])
             tempexp += nextOp
-            c = list(valid_double_operators.keys());
+            cList = list(valid_double_operators.keys());
 
             iteration = 0;
-
-            for values in c:
+            for values in cList:
                 #print(iteration)
                 if(tempexp == valid_double_operators.get(values)):
                     #print(tempexp + " Is Valid double operator")
                     valid = True
-                    return tempexp
+                    try:
+                        pointer += 1;
+                        return tempexp + " " + cList[iteration] + " null", pointer
+                    except:
+                        print(f"List out of bounds at {pointer} in {c}")
                 elif(iteration == len(valid_double_operators)-1):
                     #print(expression)
                     #print("final")
-                    return expression
+                    return expression, pointer
 
                 iteration+=1
 
 
 def main():
-    # You can use print statements as follows for debugging, they'll be visible when running tests.
-    #print("Logs from your program will appear here!", file=testfile)
-
-    #if len(sys.argv) < 3:
-        #print("Usage: ./your_program.sh tokenize <filename>", file=testfile)
-        #exit(1)
-
-    #command = sys.argv[1]
-    #if command != "tokenize":
-        #print(f"Unknown command: {command}", file=testfile)
-        #exit(1)
-
     with open("app/testfile.txt") as file:
         file_contents = file.read()
 
@@ -85,8 +76,8 @@ def main():
     pointer = 0
     while pointer < len(file_contents):
         c = file_contents[pointer]
+        expression, pointer = build_exp(file_contents, pointer, c)
         pointer += 1
-        expression = build_exp(file_contents, pointer, c)
         print(expression)
     print("EOF  null")
     if err:
@@ -99,8 +90,11 @@ def build_exp(file_contents, pointer, c):
     
     expression = valid_operators.get(c)
 
-    expression = checkNeighbor(file_contents, pointer, c, expression)
-    return expression
+    #print(f"Pointer at {pointer}")
+    #print(file_contents[pointer])
+
+    expression, pointer = checkNeighbor(file_contents, pointer, c, expression)
+    return expression, pointer
 
 if __name__ == "__main__":
     main()
