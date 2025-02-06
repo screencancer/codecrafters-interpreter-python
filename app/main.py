@@ -26,6 +26,14 @@ valid_double_operators = {
     "+=": "PLUS_EQUAL"
 }
 
+def checkifin(dictionary, file, char, valid):
+    dictionary = {}
+    for item in dictionary:
+        if(dictionary.get(char)):
+            #do something
+            print("")
+
+
 def findlinenum(file, char, pointer):
     #Find line of err
     line_num = file.count("\n", 0, file.find(char, pointer - 1)) + 1
@@ -34,6 +42,7 @@ def findlinenum(file, char, pointer):
 def checkString(startIdx, file_contents, pointer):
     pointer = 0
     str = []
+
     while c != '"':
         pointer += 1
         c = file_contents[pointer]
@@ -57,8 +66,10 @@ def checkNeighbor(file_contents, pointer, c, expression):
 
             tempexp += nextOp
             cList = list(valid_double_operators.keys());
-
             iteration = 0;
+
+            #checkifin function needs to return 
+
             for values in cList:
                 #print(iteration)
                 if(tempexp == valid_double_operators.get(values)):
@@ -83,8 +94,12 @@ def main():
 
     err = False
     pointer = 0
+
     while pointer < len(file_contents):
         c = file_contents[pointer]
+
+        #Function for this?
+
         if(valid_operators.get(c) == None):
             print(f"Invalid at line number: {findlinenum(file_contents, c, pointer)}")
             err = True
@@ -93,6 +108,7 @@ def main():
             expression, pointer = build_exp(file_contents, pointer, c)
             pointer += 1
             print(expression)
+
     print("EOF  null")
     if err:
         sys.exit(65)
