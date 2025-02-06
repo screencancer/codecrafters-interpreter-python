@@ -20,7 +20,10 @@ valid_double_operators = {
     "==": "EQUAL_EQUAL",
     ">=": "GREATER_EQUAL",
     "!=": "BANG_EQUAL",
-    "<=": "LESS_EQUAL"
+    "<=": "LESS_EQUAL",
+    "-=": "MINUS_EQUAL",
+    "*=": "STAR_EQUAL",
+    "+=": "PLUS_EQUAL"
 }
 
 def findlinenum(file, char, pointer):
